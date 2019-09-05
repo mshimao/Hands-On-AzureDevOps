@@ -157,3 +157,28 @@ Realize o setup padrão do SQL Server.
 Selecionar o modo de autenticação **Mixed Mode** e informar a senha **sa!2016**. E clicar no botão **Next**.
 
 ![IIS](../imagens/sqliis26.png)
+
+![IIS](../imagens/sqliis27.png)
+
+Agora vamos instalar o SQL Management Studio executando o programa **SSMS-setup-ENU.exe**.
+
+![IIS](../imagens/sqliis28.png)
+
+Ao finalizar a instalação, clicar na opção de **Restart**.
+
+![IIS](../imagens/sqliis29.png)
+
+** Configuração do Firewall 
+
+Para configurar o firewall para permitir o acesso ao IIS, temos que acessar a opção Rede da VM no portal do Azure e clicar na opção **Adicionar regra da porta de entrada**.
+
+![IIS](../imagens/firewall.png)
+
+Informar no campo **Intervalo de porta de destino** o valor **80** e no campo **Nome** o texto **Port_80**, e clicar em **Adicionar**.
+
+![IIS](../imagens/firewall2.png)
+
+Com isso o IIS está acessível, para testar, vá até o painel da VM e copie o IP da VM, e abra o browser e digite o endereço.
+
+![IIS](../imagens/firewall3.png)
+
