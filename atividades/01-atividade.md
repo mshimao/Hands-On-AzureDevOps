@@ -168,7 +168,7 @@ Ao finalizar a instalação, clicar na opção de **Restart**.
 
 ![IIS](../imagens/sqliis29.png)
 
-** Configuração do Firewall 
+## Configuração do Firewall 
 
 Para configurar o firewall para permitir o acesso ao IIS, temos que acessar a opção Rede da VM no portal do Azure e clicar na opção **Adicionar regra da porta de entrada**.
 
