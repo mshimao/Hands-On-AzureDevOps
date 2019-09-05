@@ -72,3 +72,88 @@ Clicar em **Baixar Arquivo RDP** para fazer o download do arquivo RDP para conec
 
 ![IIS](../imagens/sqliis2.png)
 
+Clicar no arquivo **servidorweb.rdp**.
+
+![IIS](../imagens/sqliis3.png)
+
+Informar o usuário **adminweb** e senha **Adminhandson2019** para conectar.
+
+![IIS](../imagens/sqliis4.png)
+
+Agora vamos configurar o IIS, para isso clique na opção **Add roles and features** da tela do Server Manager.
+
+![IIS](../imagens/sqliis5.png)
+
+Clicar no botão **Next**.
+
+![IIS](../imagens/sqliis6.png)
+
+Clicar no botão **Next**.
+
+![IIS](../imagens/sqliis7.png)
+
+Clicar no botão **Next**.
+
+![IIS](../imagens/sqliis8.png)
+
+Selecionar os itens **Application Server** e **Web Server(IIS)**. Na tela de popup clicar em **Add Features**. E clicar no botão **Next**.
+
+![IIS](../imagens/sqliis9.png)
+
+Selecionar o item **ASP.NET 4.5** dentro do item **.NET Framework 4.5 Features**.
+
+![IIS](../imagens/sqliis10.png)
+
+Selecionar o item **WinRM IIS Extension** e clicar no botão **Add Features** na tela de popup. E clicar em Next.
+
+![IIS](../imagens/sqliis11.png)
+
+Clicar no botão **Next**.
+
+![IIS](../imagens/sqliis12.png)
+
+Selecionar o item **Web Server (IIS) Support** e e clicar no botão **Add Features** na tela de popup. E clicar em Next.
+
+![IIS](../imagens/sqliis13.png)
+
+Clicar no botão **Next**.
+
+![IIS](../imagens/sqliis14.png)
+
+Clicar no botão **Next**.
+
+![IIS](../imagens/sqliis15.png)
+
+Clicar no botão **Install**.
+
+![IIS](../imagens/sqliis16.png)
+
+Após a instalação terminar, clicar no botão **Close**.
+
+![IIS](../imagens/sqliis17.png)
+
+Para realizar o download do SQL Server 2016 Express e o  SQL Management, abrir o Internet Explorer, e digitar a URL https://www.hanselman.com/blog/DownloadSQLServerExpress.aspx.
+
+![IIS](../imagens/sqliis18.png)
+
+Executar o setup do SQL Server clicando no SQLEXPR_X64_ENU.exe. Selecione a opção **New SQL Server ...** 
+
+![IIS](../imagens/sqliis19.png)
+
+Realize o setup padrão do SQL Server. 
+
+![IIS](../imagens/sqliis20.png)
+
+![IIS](../imagens/sqliis21.png)
+
+![IIS](../imagens/sqliis22.png)
+
+![IIS](../imagens/sqliis23.png)
+
+![IIS](../imagens/sqliis24.png)
+
+![IIS](../imagens/sqliis25.png)
+
+Selecionar o modo de autenticação **Mixed Mode** e informar a senha **sa!2016**. E clicar no botão **Next**.
+
+![IIS](../imagens/sqliis26.png)
