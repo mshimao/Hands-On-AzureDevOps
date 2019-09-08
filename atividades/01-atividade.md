@@ -182,3 +182,4 @@ Com isso o IIS está acessível, para testar, vá até o painel da VM e copie o 
 
 ![IIS](../imagens/firewall3.png)
 
+Próxima atividade: [Atividade 02](atividades/02-atividade.md)
