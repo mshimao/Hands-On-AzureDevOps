@@ -117,3 +117,5 @@ Abra um browser, cole no browser o IP e complete com o **/home.aspx**.
 Navegue na aplicação, e crie um registro para verificar se a conexão com o SQL está OK.
 
 ![app no browser](../imagens/Envvar15.png)
+
+Próxima atividade: [Atividade 03](atividades/03-atividade.md)
