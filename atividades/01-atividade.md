@@ -62,7 +62,9 @@ Após a conclusão da implantação da VM, clicar em **Ir para o recurso**.
 
 ![VM](../imagens/vm8.png)
 
-## Instalação do SQL Server Express e configuração do IIS
+## Instalação do Chrome 
+
+Para facilitar o acesso ao Azure DevOps vamos instalar o Chrome na VM.
 
 Na tela da máquina virtual, clicar na opção **Conectar**.
 
@@ -79,6 +81,17 @@ Clicar no arquivo **servidorweb.rdp**.
 Informar o usuário **adminweb** e senha **Adminhandson2019** para conectar.
 
 ![IIS](../imagens/sqliis4.png)
+
+Inicialmente é necessário desabilitar o recurso **IE Enhanced Security Configuration**. Clique no texto **On**.
+
+![IE security](../imagens/chrome1.png)
+
+Selecione as opções **Off** e clique em **OK**.
+
+Depois abra o Internet Explorer e faça o download e instalação do Chrome pela URL https://www.google.com/intl/pt-BR/chrome/.
+
+
+## Instalação do SQL Server Express e configuração do IIS
 
 Agora vamos configurar o IIS, para isso clique na opção **Add roles and features** da tela do Server Manager.
 
@@ -132,7 +145,7 @@ Após a instalação terminar, clicar no botão **Close**.
 
 ![IIS](../imagens/sqliis17.png)
 
-Para realizar o download do SQL Server 2016 Express e o  SQL Management, abrir o Internet Explorer, e digitar a URL https://www.hanselman.com/blog/DownloadSQLServerExpress.aspx.
+Para realizar o download do SQL Server 2016 Express e o  SQL Management, abrir o browser, e digitar a URL https://www.hanselman.com/blog/DownloadSQLServerExpress.aspx.
 
 ![IIS](../imagens/sqliis18.png)
 
