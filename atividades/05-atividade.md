@@ -6,7 +6,7 @@ Nesta atividade iremos configurar um pipeline de build para gerar os artefatos q
 
 Criaremos um pipeline que buscará os arquivos no repositório do Azure Repos, fará a geração de um arquivo zip e subir o arquivo como artefato para o Azure Pipeline.
 
-Acessar o Azure DevOps e abrir o projeto HandsOnDevOps. Clicar na opção **Pipelines** e depois na opção **New pipeline**.
+Acessar o Azure DevOps e abrir o projeto HandsOnDevOps. Clicar na opção **Pipelines**, clicar em **Builds** e depois na opção **New pipeline**.
 
 ![new pipeline](../imagens/build1.png)
 
@@ -71,7 +71,10 @@ O Azure Pipelines irá mostrar o log de processamento e o resultado. Clicando em
 
 ![save](../imagens/build13.png)
 
+Para ver o log detalhado de um item, clicar no item.
 
+![log](../imagens/build14.png)
 
+![log](../imagens/build15.png)
 
 Próxima atividade: [Atividade 06](atividades/06-atividade.md)
