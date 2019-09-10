@@ -35,13 +35,64 @@ Essas linhas vão fazer com que os arquivos com extensão **cs** e **rsp**, e o 
 
 - [Mais informações gitignore](https://git-scm.com/docs/gitignore)
 
-Vamos adicionar os arquivos ao repositório usando o comando **git add *.*** .
+Vamos adicionar os arquivos ao repositório usando o comando:
+
+```bash
+git add *.*
+```
 
 ![git add](../imagens/git6.png)
 
+Vamos executar o comando commit para que os arquivos sejam armazenados no repositório.
+
+```bash
+git commit -m 'inicio'
+```
+
+![git add](../imagens/git7.png)
+
+Neste momento os arquivos estão armazenados no repositório local, agora vamos conectar com o Azure Repos e enviar os arquivos para lá. Para isso acesse a instância do Azure DevOps criada anteriormente.
+
+![azure repos](../imagens/azurerepos1.png)
 
 
 
+Agora vamos criar o token de autenticação para que o Git acesse o Azure Repos. Para isso, clicar no icone do avatar no canto superior direito e na opção **Azure DevOps profile**.
 
+![devops profile](../imagens/token1.png)
 
-Próxima atividade: [Atividade 04](atividades/04-atividade.md)
+Clicar na opção **Personal access tokens** e depois em **New Token**.
+
+![new token](../imagens/token2.png)
+
+Informar no campo **Name** o valor **token full** e selecionar o item **Full access** e clicar em **Create**.
+
+![token full](../imagens/token3.png)
+
+Copie o token e cole num arquivo texto para ser utilizado posteriormente, e feche a tela.
+
+![copy token](../imagens/token4.png)
+
+Clicar no icone do Azure DevOps no canto superior esquerdo da tela para retornar a tela inicial.
+
+Clicar no botão **+ New project** para criar um novo projeto. No campo **Project Name** digite **HandsOnDevOps** e cliquem em **Create**.
+
+![new project azure repos](../imagens/azurerepos2.png)
+
+Clicar na opção **Repos**, e copiar os comandos da seção **or push an existing repository from command line**.
+
+![azure repos remote](../imagens/azurerepos3.png)
+
+E cole os comandos na janela do Git CMD, e informe no campo senha cole o token gerado anteriormente.
+
+![azure repos remote 2](../imagens/azurerepos4.png)
+
+![git push](../imagens/git8.png)
+
+Atualize a tela do browser, e verá que os arquivos agora estão no repositório do Azure.
+
+![azure repos remote 3](../imagens/azurerepos5.png)
+
+- [Mais informações sobre o Git](https://git-scm.com/doc)
+
+Próxima atividade: [Atividade 05](atividades/05-atividade.md)
