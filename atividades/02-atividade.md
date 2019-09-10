@@ -4,7 +4,7 @@ Nesta atividade vamos criar uma KB Genexus e instalar a aplicação gerada na VM
 
 ### Criação da KB Genexus
 
-Crie o uma KB com o Genexus 16 e importe o xpz abaixo:
+Crie o uma KB com o Genexus 16, com **.NET e SQL Server**, e importe o xpz abaixo:
 
 - [xpz demo devops](arquivos/HandsOnDevOPs.xpz)
 
