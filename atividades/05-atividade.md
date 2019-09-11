@@ -77,4 +77,19 @@ Para ver o log detalhado de um item, clicar no item.
 
 ![log](../imagens/build15.png)
 
+Vamos habilitar a integração contínua para que quando um push for realizado no Azure Repos configurado no Pipeline de Build, o pipeline de build será executado automaticamente.
+Clicar na opção **Trigger**.
+
+![triggers](../imagens/build16.png)
+
+Selecionar o checkbox **Enable continuous integration**.
+
+![triggers](../imagens/build17.png)
+
+E salvar o pipeline.
+
+![triggers](../imagens/build18.png)
+
+
+
 Próxima atividade: [Atividade 06](atividades/06-atividade.md)
