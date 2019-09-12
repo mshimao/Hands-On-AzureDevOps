@@ -4,13 +4,21 @@ Nesta atividade vamos criar uma KB Genexus e instalar a aplicação gerada na VM
 
 ### Criação da KB Genexus
 
-Crie o uma KB com o Genexus 16, com **.NET e SQL Server**, e importe o xpz abaixo:
+Crie uma KB com o Genexus 16, com **.NET e SQL Server**, e importe o xpz abaixo:
 
 - [xpz demo devops](arquivos/HandsOnDevOPs.xpz)
 
 ![import xpx](../imagens/Kbgx1.png)
 
-Após a importação dar um build All e criar a base de dados com o nome de **DemoDevOps**.
+Caso não possua o Genexus 16, use a versão disponível e crie uma KB configurada para **.NET e SQL Server**.
+
+Após a KB criada, criar uma Transação chamada Cliente com a seguinte estrutura.
+
+![trn](../imagens/gx1.png)
+
+E aplicar o Pattern Work With para web na transação.
+
+Após a importação / criação da transação dar um build All e criar a base de dados com o nome de **DemoDevOps**.
 
 ![config db](../imagens/Kbgx2.png)
 
