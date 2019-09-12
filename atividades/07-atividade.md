@@ -62,6 +62,12 @@ Abra o Git CMD e se posicione no diretório do environment .NET.
 
 ![gitcmd](../imagens/sqlscript8.png)
 
+Executar o comando add para marcar os arquivos para serem armazenados.
+
+```bash
+git add *.*
+```
+
 Vamos executar o comando commit para que os arquivos sejam armazenados no repositório.
 
 ```bash
@@ -125,6 +131,142 @@ Vamos editar o stage, e adicionar as tasks para executar o script SQL. Para isso
 
 ![edit stage](../imagens/sqlscript20.png)
 
-Clicar no **+**, digitar **extract** no campo de pesquisa e selecinar o item **Extract Files** e clicar em **Add**.
+Clicar no **+** do item **Agent job**, digitar **extract** no campo de pesquisa e selecinar o item **Extract Files** e clicar em **Add**.
 
 ![add ext](../imagens/sqlscript21.png)
+
+Clicar no item **Extract files** e editar as seguintes propriedades.
+
+| Campo | Valor | 
+| --- | --- |
+| Display name | Extract files scriptsql |
+| Archive file patterns | $(System.DefaultWorkingDirectory)/_HandsOnDevOps-CI/drop/scriptsql.zip |
+| Destination folder | $(Agent.WorkFolder)/scriptsqlzip |
+
+![extract prop](../imagens/sqlscript22.png)
+
+Clicar no **+** do item **Agent job**, digitar **powershell** no campo de pesquisa e selecinar o item **Poweshell** e clicar em **Add**.
+
+![powershell](../imagens/sqlscript23.png)
+
+Selecionar o item **PowerShell script** e editar as seguintes propriedades.
+
+| Campo | Valor | 
+| --- | --- |
+| Display name | Executa Scripts SQL |
+| Type | Inline |
+
+Apagar o conteúdo do campo **Script** e copiar o código abaixo para o campo.
+
+```csharp
+$path = "$(Agent.WorkFolder)\scriptsqlzip\scriptsql"
+$files = Get-ChildItem -Path $path | Sort-Object
+$serverInstance = "$(SQLInstance)"
+$database = "$(DBName)"
+$user = "$(SQLUser)"
+$pwd = "$(SQLPassword)"
+foreach ($file in $files) {
+    $content = Get-Content -Path $file.FullName | Out-String
+    $commandSql = "SELECT Id FROM [dbo].[AzureDevOpsMigration] WHERE [NomeArquivo] = '" + $file.Name + "'" 
+    $Results = Invoke-Sqlcmd -Query $commandSql -ServerInstance $serverInstance -Database $database -Username $user -Password $pwd 
+    if (!$Results.Id) {
+        $content = $content.Replace("'", "''")
+        $commandSql = "INSERT INTO [dbo].[AzureDevOpsMigration] ([NomeArquivo],[ScriptSQL]) VALUES ('" + $file.Name + "','" + $content + "')"
+        $exec = Invoke-Sqlcmd -Query $commandSql -ServerInstance $serverInstance -Database $database -Username $user -Password $pwd 
+        Write-Host $exec  
+        Write-Host ("Insert script " + $file.Name)   
+    }
+    else {
+        $commandSql = "SELECT Id FROM [dbo].[AzureDevOpsMigration] WHERE [NomeArquivo] = '" + $file.Name + "' AND DataExecucao IS NULL" 
+        $Results = Invoke-Sqlcmd -Query $commandSql -ServerInstance $serverInstance -Database $database -Username $user -Password $pwd 
+        if ($Results.Id) {
+            $content = $content.Replace("'", "''")
+            $commandSql = "UPDATE [dbo].[AzureDevOpsMigration] SET [ScriptSQL] = '" + $content + "' WHERE Id = " + $Results.Id.ToString() 
+            $exec = Invoke-Sqlcmd -Query $commandSql -ServerInstance $serverInstance -Database $database -Username $user -Password $pwd 
+            Write-Host $exec  
+            Write-Host ("Update script " + $file.Name)   
+        }
+    }
+}
+
+$commandSql = "select [Id], [NomeArquivo], [ScriptSQL] FROM [dbo].[AzureDevOpsMigration] where DataExecucao is null order by  [NomeArquivo]" 
+$Results = Invoke-Sqlcmd -Query $commandSql -ServerInstance $serverInstance -Database $database -Username $user -Password $pwd 
+
+foreach ($Row in $Results) {
+    $tranSql = "SET XACT_ABORT ON  `n"
+    $tranSql += "BEGIN TRAN `n"
+    $tranSql += $Row.ScriptSQL + "`n"
+    $tranSql += "UPDATE [dbo].[AzureDevOpsMigration] SET DataExecucao = GETDATE() WHERE Id = " + $Row.Id + "`n"
+    $tranSql += "COMMIT TRAN `n"
+
+    $exec = Invoke-Sqlcmd -Query $tranSql -ServerInstance $serverInstance -Database $database -Username $user -Password $pwd 
+    Write-Host ("Script executado: ")
+    Write-Host $Row.ScriptSQL
+}
+    
+```
+
+Agora vamos criar as variáveis utilizadas pelo script na seção **Variables**.
+
+![Add Variaveis](../imagens/sqlscript24.png)
+
+Clicar na opção **+ Add** para adicionar linhas para digitar as variáveis abaixo. 
+
+| Variável | Valor | 
+| --- | --- |
+| SQLInstance | SERVIDORWEB\SQLEXPRESS |
+| DBName | DemoDevOps |
+| SQLUser | sa |
+| SQLPassword | sa!2016 |
+
+Clicar em **Save** para salvar o pipeline.
+
+![Add Variaveis 2](../imagens/sqlscript25.png)
+
+Para que seja possível executar os comandos SQL será utilizado um módulo do Powershell, esse módulo tem que ser instalado na VM que tem o agente instalado. 
+Inicialmente vamos atualizar o Powershell. Abra um browser na VM e vá para a url **https://www.microsoft.com/en-us/download/details.aspx?id=54616**. 
+
+![powershell](../imagens/sqlscript26.png)
+
+Selecione o pacote para Windows 2012, realize o download e execute o setup.
+
+![powershell down](../imagens/sqlscript27.png)
+
+Ao final do setup será solicitado o boot do servidor. Após o boot, conectar novamente na VM.
+Abrir um console Powershell e digitar o comando **Install-Module -Name SqlServer -AllowClobber** para instalarmos o pacote SQL para habilitar o Powershell a executar comandos SQL. Responder **Y** para as questões do prompt.
+
+![powershell down](../imagens/sqlscript28.png)
+
+Executar o comando **Set-ExecutionPolicy -ExecutionPolicy RemoteSigned** no Powershell e responder **A** para a pergunta do prompt.
+
+![powershell set](../imagens/sqlscript30.png)
+
+Agora temos que configurar o SQL para receber a conexão, para isso vamos usar o **SQL Server Configuration Manager**.
+
+![SQL config](../imagens/configsql1.png)
+
+Abrir o item **SQL Server Network Configuration** e clicar em **Protocols for ...**. Clicar no com o botão da direita do mouse no item **TCP/IP** e clicar em **Enable**.
+
+![SQL config 2](../imagens/configsql2.png)
+
+Vamos reiniciar o SQL Server, clicar no item **SQL Server Services** e clicar com o botão direito do mouse no item  **SQL Server(SQLExpress)** e clicar em **Restart**.
+
+![SQL config 3](../imagens/configsql3.png)
+
+Agora vamos habilitar o SQL Server Browser, para isso dar um duplo clique em **SQL Server Browser** e na aba **Service**, mudar o **Start Mode** para **Automatic** e clicar **OK**.
+
+![SQL config 4](../imagens/configsql4.png)
+
+Clicar com o botão da direita do mouse em **SQL Server Browser** e clicar em **Start**.
+
+Agora todos os itens necessários estão configurados, vamos executar o pipeline para vermos a execução do script sql. Para isso abra o Azure DevOps, clique em **Releases** e **Create release**.
+
+![execução do pipeline](../imagens/sqlscript29.png)
+
+Se tudo ocorrer corretamente, o pipeline será executado.
+
+![execução do pipeline 2](../imagens/sqlscript31.png)
+
+Se for executado um select na tabela **AzureDevOpsMigration** veremos o script executado e o campo criado na tabela cliente.
+
+![execução do pipeline 3](../imagens/sqlscript32.png)
