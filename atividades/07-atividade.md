@@ -91,7 +91,40 @@ Clicar no **+** no item **Agent job 1**. Preencher o campo de pesquisa com **Arc
 
 ![edit build](../imagens/sqlscript13.png)
 
-Próxima atividade: [Atividade 07](atividades/07-atividade.md)
+Editar as propriedades.
 
+| Campo | Valor | 
+| --- | --- |
+| Display name | Archive scriptsql |
+| Root folder or file to archive | scriptsql |
+| Archive file to create | $(Build.ArtifactStagingDirectory)/scriptsql.zip |
 
+E setar o checkbox da propriedade **Force verbose output** para podermos visualizar a execução do comando.
 
+![zip task](../imagens/sqlscript14.png)
+
+Arrastar o item **Archive scriptsql** para cima do **Publish Artifact: drop**.
+
+![zip task 2](../imagens/sqlscript15.png)
+
+Vamos salvar o pipeline e executá-lo clicando em **Save & queue**.
+
+![salvar](../imagens/sqlscript16.png)
+
+Após o pipeline executar, clicar no item **Summary**, e no item **drop**, clicar no texto **...**, e depois em **View contents** para verificar se o artefato do script sql foi gerado.
+
+![artefato](../imagens/sqlscript17.png)
+
+![artefato 2](../imagens/sqlscript18.png)
+
+Agora vamos editar o pipeline de release para executar o script SQL. Clicar em **Release** e na opção **Edit**.
+
+![edit release](../imagens/sqlscript19.png)
+
+Vamos editar o stage, e adicionar as tasks para executar o script SQL. Para isso, clicar no item **1 job, 2 tasks**. 
+
+![edit stage](../imagens/sqlscript20.png)
+
+Clicar no **+**, digitar **extract** no campo de pesquisa e selecinar o item **Extract Files** e clicar em **Add**.
+
+![add ext](../imagens/sqlscript21.png)
