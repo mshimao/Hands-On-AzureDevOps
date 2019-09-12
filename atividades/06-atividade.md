@@ -63,7 +63,7 @@ Clicar no item **Extract files** e editar as seguintes propriedades.
 
 ![extract prop](../imagens/release11.png)
 
-Nessa tarefa estamos descompactando o arquivo web.zip que foi baixado do Azure Pipelines para a VM do agente no diretório **$(System.DefaultWorkingDirectory)/_HandsOnDevOps-CI/drop** e vai ser descompactado no diretório **$(Agent.WorkFolder)/webzip**.
+Nessa tarefa estamos descompactando o arquivo web.zip que foi baixado do Azure Pipelines para a VM do agente no diretório **_HandsOnDevOps-CI/drop**  e vai ser descompactado no diretório **webzip**.
 
 Clicar no **+** do item **Agent job**, digitar **copy** no campo de pesquisa, selecionar o item **Copy files** e clicar em **Add**.
 
@@ -78,13 +78,44 @@ Clicar no item **Copy files** e editar as seguintes propriedades.
 | Contents | ** |
 | Target Folder | c:\inetpub\wwwroot |
 
-Marcar a opção **Clean target Folder**.
+Marcar a opção **Overwrite**.
 
 ![copy prop](../imagens/release13.png)
 
-Clicar em **Save** e depois em **Create release**.
+Clicar em **Save** para salvar o pipeline.
 
 ![save](../imagens/release14.png)
+
+Vamos configurar os direitos do usuário do agente para que ele possa copiar os arquivos, para isso vamos conectar na VM. 
+Abrir o Explorer e clicar no botão direito na pasta c:\inetpub\wwwroot, e clicar em **Properties**.
+
+![properties](../imagens/seguranca1.png)
+
+Clicar na aba **Security** e clicar em **Edit**.
+
+![properties 2](../imagens/seguranca2.png)
+
+Clicar em **Add**.
+
+![properties 3](../imagens/seguranca3.png)
+
+Clicar em **Advanced**.
+
+![properties 4](../imagens/seguranca4.png)
+
+Clicar em **Find Now** e ir até o final da lista e selecionar o item **VSTS_Agent...**.
+
+![properties 5](../imagens/seguranca5.png)
+
+Clicar em **OK** para confirmar a seleção do usuário.
+
+![properties 6](../imagens/seguranca6.png)
+
+Marcar o item **Full control** e clicar me **OK**. E **OK** na próxima tela.
+
+![properties 7](../imagens/seguranca7.png)
+
+Abrir o Azure Pipelines, clicar em **Create release**.
 
 ![create](../imagens/release15.png)
 
