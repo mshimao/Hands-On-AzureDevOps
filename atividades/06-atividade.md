@@ -49,6 +49,10 @@ Clicar no texto **1 job, 0 task** para abrir a tela de configuração das tasks.
 
 ![tasks](../imagens/release9.png)
 
+Clicar no item **Agent job** e alterar o Agent pool para **Default**, com isso será usado o agente instalado anteriormente para execução do deploy.
+
+![agent](../imagens/jobagent.png)
+
 Clicar no **+** do item **Agent job**, digitar **extract** no campo de pesquisa, selecionar o item **Extract files** e clicar em **Add**.
 
 ![extract](../imagens/release10.png)
