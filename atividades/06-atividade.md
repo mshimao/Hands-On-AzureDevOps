@@ -133,7 +133,7 @@ Podemos ver o log clicando no texto **Succeeded**.
 
 ![release1](../imagens/release19.png)
 
-Próxima atividade: [Atividade 07](atividades/07-atividade.md)
+Próxima atividade: [Atividade 07](07-atividade.md)
 
 
 

@@ -92,4 +92,4 @@ E salvar o pipeline.
 
 
 
-Próxima atividade: [Atividade 06](atividades/06-atividade.md)
+Próxima atividade: [Atividade 06](06-atividade.md)

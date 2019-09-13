@@ -126,4 +126,4 @@ Navegue na aplicação, e crie um registro para verificar se a conexão com o SQ
 
 ![app no browser](../imagens/Envvar15.png)
 
-Próxima atividade: [Atividade 03](atividades/03-atividade.md)
+Próxima atividade: [Atividade 03](03-atividade.md)

@@ -95,4 +95,4 @@ Atualize a tela do browser, e verá que os arquivos agora estão no repositório
 
 - [Mais informações sobre o Git](https://git-scm.com/doc)
 
-Próxima atividade: [Atividade 05](atividades/05-atividade.md)
+Próxima atividade: [Atividade 05](05-atividade.md)

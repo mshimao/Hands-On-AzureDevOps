@@ -20,4 +20,4 @@ Para instalações on-premise será necessário configurar o firewall, siga as i
 
 - [Configuração do firewall](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-windows?view=azure-devops#im-running-a-firewall-and-my-code-is-in-azure-repos-what-urls-does-the-agent-need-to-communicate-with)
 
-Próxima atividade: [Atividade 04](atividades/04-atividade.md)
+Próxima atividade: [Atividade 04](04-atividade.md)
